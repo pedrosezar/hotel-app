@@ -11,10 +11,12 @@
   "dependencies": {
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
+    "axios": "^1.5.1",
     "expo": "~49.0.15",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
-    "react-native": "0.72.6"
+    "react-native": "0.72.6",
+    "zustand": "^4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
