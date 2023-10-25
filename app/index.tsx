@@ -6,7 +6,7 @@ export default function Page() {
     <View style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.title}>Hello World</Text>
-        <Link href="/login">Fazer Login</Link>
+        <Link href="/admin/">Fazer Login</Link>
       </View>
     </View>
   );
