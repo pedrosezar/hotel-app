@@ -1,35 +1,51 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Link } from "expo-router";
+import { Button, Input, Text } from "@rneui/base";
+import { makeStyles } from "@rneui/themed";
+import { Link, useRouter } from "expo-router";
+import { View } from "react-native";
 
-export default function Page() {
+import useNavigationExitOnBack from "../hooks/useNavigationExitOnBack";
+
+export default function _screen() {
+  useNavigationExitOnBack();
+
+  const styles = useStyles();
+  const router = useRouter();
+
+  const handleLogin = () => {
+    router.push("/(auth)/(home)/home");
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.main}>
-        <Text style={styles.title}>Hello World</Text>
-        <Link href="/admin/">Fazer Login</Link>
-      </View>
+      <Input label="E-mail" placeholder="e-mail" />
+      <Input label="Senha" placeholder="senha" secureTextEntry />
+      <Button
+        title="Login"
+        containerStyle={styles.login}
+        onPress={handleLogin}
+      />
+
+      <Link href="/register">
+        <Text style={styles.register}>Criar cadastro</Text>
+      </Link>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const useStyles = makeStyles((theme) => ({
   container: {
-    flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
-    padding: 24,
-  },
-  main: {
-    flex: 1,
     justifyContent: "center",
-    maxWidth: 960,
-    marginHorizontal: "auto",
+    flex: 1,
+    padding: 16,
   },
-  title: {
-    fontSize: 64,
-    fontWeight: "bold",
+  login: {
+    width: "100%",
+    paddingHorizontal: 8,
   },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
+  register: {
+    color: "#000",
+    fontWeight: "600",
   },
-});
+}));

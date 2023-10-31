@@ -1,74 +1,38 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { Button, Input } from "@rneui/base";
+import { useRouter } from "expo-router";
+import { StyleSheet, View } from "react-native";
 
-export default function Page() {
+export default function _screen() {
+  const router = useRouter();
+
+  const handleRegister = () => {
+    router.push("/");
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Crie seu cadastro</Text>
-
-      <View style={styles.containerForm}>
-        <Text style={styles.titleInput}>Email</Text>
-        <TextInput placeholder="Digite seu e-mail" style={styles.input} />
-
-        <Text style={styles.titleInput}>Senha</Text>
-        <TextInput placeholder="Digite sua senha" style={styles.input} />
-
-        <Text style={styles.titleInput}>Confirme a senha</Text>
-        <TextInput
-          placeholder="Digite a confirmação da sua senha"
-          style={styles.input}
-        />
-
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Cadastrar</Text>
-        </TouchableOpacity>
-      </View>
+      <Input label="E-mail" placeholder="fulano@site.com.br" />
+      <Input label="Senha" placeholder="*****" secureTextEntry />
+      <Input label="Confirme a senha" placeholder="*****" secureTextEntry />
+      <Button
+        title="Fazer login"
+        containerStyle={styles.register}
+        onPress={handleRegister}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 24,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  containerForm: {
-    width: "100%",
     flex: 1,
+    padding: 16,
   },
-  titleInput: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginTop: 28,
-  },
-  input: {
-    borderBottomWidth: 1,
-    height: 40,
-    marginBottom: 12,
-    fontSize: 14,
-  },
-  button: {
-    backgroundColor: "#CCCCCC",
+  register: {
     width: "100%",
-    borderRadius: 4,
-    paddingVertical: 8,
-    marginTop: 14,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    fontSize: 20,
-    fontWeight: "bold",
+    paddingHorizontal: 8,
   },
 });
