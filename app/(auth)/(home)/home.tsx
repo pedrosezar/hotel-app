@@ -5,12 +5,15 @@ import { Text } from "@rneui/base";
 import { Link } from "expo-router";
 
 import useNavigationExitOnBack from "../../../hooks/useNavigationExitOnBack";
-import { data } from "../../../mocks/data";
+import { Hotel, data } from "../../../mocks/data";
 
-const Item = ({ item }: any) => (
+interface ItemProps {
+  item: Hotel;
+}
+const Item = ({ item }: ItemProps) => (
   <Link
     key={item.id}
-    href={{ pathname: "/(auth)/(home)/details", params: item }}
+    href={{ pathname: "/(auth)/(home)/details", params: { id: item.id } }}
   >
     <View style={styles.item}>
       <Image
