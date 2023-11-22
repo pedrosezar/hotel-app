@@ -2,10 +2,12 @@ import { View, StyleSheet, Image, SafeAreaView, FlatList } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
 import { Text } from "@rneui/base";
-import { Link } from "expo-router";
+import { Link, useGlobalSearchParams } from "expo-router";
 
+import Loading from "../../../components/Loading";
 import useNavigationExitOnBack from "../../../hooks/useNavigationExitOnBack";
-import { Hotel, data } from "../../../mocks/data";
+import useCollection from "../../../firebase/hooks/useCollection";
+import Hotel from "../../../types/Hotel";
 
 interface ItemProps {
   item: Hotel;
@@ -31,17 +33,24 @@ const Item = ({ item }: ItemProps) => (
 );
 
 export default function _screen() {
+  const { data, loading } = useCollection<Hotel>("hotels");
+
+  const { id } = useGlobalSearchParams();
   useNavigationExitOnBack();
 
   return (
     <View style={styles.container}>
       <Text h1>Home</Text>
       <SafeAreaView>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <Item item={item} />}
-          keyExtractor={(item) => item.id.toString()}
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => <Item item={item} />}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        )}
       </SafeAreaView>
     </View>
   );

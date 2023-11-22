@@ -10,48 +10,52 @@ import React from "react";
 import { useGlobalSearchParams } from "expo-router";
 import { Button } from "@rneui/base";
 import Constants from "expo-constants";
-import { data } from "../../../mocks/data";
+import useDocument from "../../../firebase/hooks/useDocument";
+import Loading from "../../../components/Loading";
+import Hotel from "../../../types/Hotel";
 
 export default function details() {
   const { id } = useGlobalSearchParams();
-  const { name, price, gallery } = data[0];
+  const { data: hotel, loading } = useDocument<Hotel>("hotels", id as string);
+  if (loading || !hotel) return <Loading />;
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.title}>{hotel?.name}</Text>
 
         <View style={styles.gallery}>
           <Image
             style={styles.photoGallery}
             source={{
-              uri: gallery[0].photo,
+              uri: hotel?.gallery[0].photo,
             }}
           />
 
           <Image
             style={styles.photoGallery}
             source={{
-              uri: gallery[1].photo,
+              uri: hotel?.gallery[1].photo,
             }}
           />
           <Image
             style={styles.photoGallery}
             source={{
-              uri: gallery[2].photo,
+              uri: hotel?.gallery[2].photo,
             }}
           />
           <Image
             style={styles.photoGallery}
             source={{
-              uri: gallery[3].photo,
+              uri: hotel?.gallery[3].photo,
             }}
           />
         </View>
 
         <View style={styles.item}>
           <View style={styles.info}>
-            <Text style={styles.infoTitle}>Preço para 1 diária, 2 adultos</Text>
-            <Text style={styles.infoPrice}>R$ {price}</Text>
+            <Text style={styles.infoTitle}>{hotel?.description}</Text>
+            <Text style={styles.infoPrice}>R$ {hotel?.price}</Text>
             <Text style={styles.infoDetail}>Impostos e taxas incluidos</Text>
           </View>
         </View>
