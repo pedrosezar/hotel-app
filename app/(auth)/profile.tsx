@@ -5,7 +5,6 @@ import { Button, Text } from "@rneui/base";
 import { useRouter } from "expo-router";
 
 import useNavigationExitOnBack from "../../hooks/useNavigationExitOnBack";
-import { user } from "../../mocks/user";
 
 export default function _screen() {
   useNavigationExitOnBack();
@@ -17,10 +16,7 @@ export default function _screen() {
 
   return (
     <View style={styles.container}>
-      <Text h1>Profile</Text>
-
-      <Text>{user.name}</Text>
-      <Text>{user.email}</Text>
+      <Text h2>Profile</Text>
 
       <Button title="Logout" onPress={handleLogout} />
     </View>

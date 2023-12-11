@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 /**
  * Hook to access and manage a firestore collection.
- * @param collectionName Collection name in plural (e.g. 'books'). Can also be a path to subcollection.
+ * @param collectionName Collection name in plural (e.g. 'hotels'). Can also be a path to subcollection.
  * @param precache Should all records be loaded when hook starts? default is true. Avoid using with big collections.
  * @returns
  */

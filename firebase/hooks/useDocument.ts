@@ -7,15 +7,19 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
-export type Book = {
+export type Hotel = {
   id?: string;
-  title: string;
-  pages: number;
+  cover: string;
+  name: string;
+  price: number;
+  description: string;
+  info: string;
+  gallery: Array<{ photo: string }>;
 };
 
 /**
  * Hook to access and manage a firestore document.
- * @param collectionName Collection name in plural (e.g. 'books'). Can also be a path to subcollection.
+ * @param collectionName Collection name in plural (e.g. 'hotels'). Can also be a path to subcollection.
  * @returns
  */
 export default function useDocument<T extends { [x: string]: any }>(
