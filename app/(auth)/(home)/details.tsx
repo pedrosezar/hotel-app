@@ -23,35 +23,17 @@ export default function details() {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>{hotel?.name}</Text>
-
         <View style={styles.gallery}>
-          <Image
-            style={styles.photoGallery}
-            source={{
-              uri: hotel?.gallery[0].photo,
-            }}
-          />
-
-          <Image
-            style={styles.photoGallery}
-            source={{
-              uri: hotel?.gallery[1].photo,
-            }}
-          />
-          <Image
-            style={styles.photoGallery}
-            source={{
-              uri: hotel?.gallery[2].photo,
-            }}
-          />
-          <Image
-            style={styles.photoGallery}
-            source={{
-              uri: hotel?.gallery[3].photo,
-            }}
-          />
+          {hotel?.gallery.map((gallery, index) => (
+            <Image
+              key={index}
+              style={styles.photoGallery}
+              source={{
+                uri: gallery,
+              }}
+            />
+          ))}
         </View>
-
         <View style={styles.item}>
           <View style={styles.info}>
             <Text style={styles.infoTitle}>{hotel?.description}</Text>
@@ -59,7 +41,6 @@ export default function details() {
             <Text style={styles.infoDetail}>Impostos e taxas incluidos</Text>
           </View>
         </View>
-
         <View style={styles.item}>
           <View style={styles.detail}>
             <View style={styles.detailLeft}>
@@ -72,13 +53,10 @@ export default function details() {
             </View>
             <View style={styles.detailInfo}>
               <Text style={styles.detailInfoTitle}>Quartos e hóspedes</Text>
-              <Text style={styles.detailInfoSubTitle}>
-                1 quarto, 2 adultos, 0 crianças
-              </Text>
+              <Text style={styles.detailInfoSubTitle}>{hotel?.info}</Text>
             </View>
           </View>
         </View>
-
         <Button title="Reservar" containerStyle={styles.reservar} />
       </ScrollView>
     </SafeAreaView>

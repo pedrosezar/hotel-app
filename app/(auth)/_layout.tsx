@@ -12,6 +12,7 @@ export default function _layout() {
         name="(home)"
         options={{
           headerShown: false,
+          freezeOnBlur: true,
           tabBarIcon: () => (
             <Icon type="antdesign" name="home" color={theme.colors.primary} />
           ),

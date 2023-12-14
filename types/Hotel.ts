@@ -4,7 +4,8 @@ type Hotel = {
   name: string;
   price: number;
   description: string;
-  gallery: Array<{ id: number; photo: string }>;
+  info: string;
+  gallery: Array<string>;
 };
 
 export default Hotel;
