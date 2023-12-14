@@ -29,7 +29,7 @@ export default function details() {
               key={index}
               style={styles.photoGallery}
               source={{
-                uri: gallery.photo,
+                uri: gallery,
               }}
             />
           ))}

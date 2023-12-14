@@ -26,7 +26,6 @@ const Item = ({ item }: ItemProps) => (
       />
       <View style={styles.content}>
         <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.price}>R$ {item.price}</Text>
       </View>
     </View>
   </Link>
@@ -84,9 +83,5 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 20,
     marginBottom: 16,
-  },
-  price: {
-    color: "#000",
-    fontSize: 16,
   },
 });
